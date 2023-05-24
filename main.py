@@ -16,11 +16,11 @@ def resultado():
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
-        host=db_host,
-        port=db_port,
-        user="Rastreio",
+        host='containers-us-west-127.railway.app',
+        port='5810',
+        user='Rastreio',
         password='ClubeRastreio*****&',
-        database=db_database,
+        database='railway',
     )
     cursor = cnx.cursor()
 
@@ -93,11 +93,11 @@ def consultar():
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
-        host=db_host,
-        port=db_port,
-        user="Rastreio",
+        host='containers-us-west-127.railway.app',
+        port='5810',
+        user='Rastreio',
         password='ClubeRastreio*****&',
-        database=db_database,
+        database='railway',
     )
     cursor = cnx.cursor()
 
