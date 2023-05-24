@@ -1,13 +1,1 @@
-version: 2
-services:
-  web:
-    builder:
-      name: python
-      dockerfile: Dockerfile
-    routes:
-      - src: /
-        dest: /app
-    build:
-      - pip install -r requirements.txt
-    release:
-      - gunicorn main:app
+pip install -r requirements.txt
