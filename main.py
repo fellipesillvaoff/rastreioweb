@@ -20,7 +20,7 @@ def resultado():
         port=db_port,
         user=db_user,
         password=db_password,
-        database=db_database
+        database=db_database,
     )
     cursor = cnx.cursor()
 
@@ -30,23 +30,50 @@ def resultado():
 
     resultado = cursor.fetchone()
 
-    if cursor.rowcount > 0:
-        # Extrair os dados do resultado da consulta
-        nome_cliente = resultado[1]
-        endereco = resultado[2]
-        cep = resultado[3]
-        separado = resultado[4]
-        data_separado = resultado[5]
-        coletado = resultado[6]
-        data_coletado = resultado[7]
-        entregue = resultado[8]
-        previsto = resultado[9]
-        rastreio = resultado[10]
+    if resultado:
+        nome_cliente = resultado[0]
+        endereco = resultado[9]
+        cep = resultado[10]
+        Rseparado = resultado[3]
+        data_separado = resultado[4]
+        Rcoletado = resultado[5]
+        data_coletado = resultado[6]
+        Rentregue = resultado[7]
+        previsto = resultado[8]
+        cep=resultado[10]
+        data_entrega=resultado[11]
+        rastreio=resultado[2]
 
-        # Renderizar o template 'resultado.html' com os dados da consulta
+        if Rseparado == 1:
+            separado = 'Separado'
+        else:
+            separado = ''
+
+        if Rcoletado == 1:
+            coletado='Separado'
+        else:
+            coletado=''
+        if Rentregue == 1:
+            entregue ="Entregue"
+        else:
+            entregue=''
+
+
+        print("Dados do resultado:")
+        print("Nome do cliente:", nome_cliente)
+        print("Endereço:", endereco)
+        print("CEP:", cep)
+        print("Separado:", separado)
+        print("Data de separação:", data_separado)
+        print("Coletado:", coletado)
+        print("Data de coleta:", data_coletado)
+        print("Entregue:", entregue)
+        print("Previsto:", previsto)
+        print("Rastreio:", rastreio)
+
         return render_template('resultado.html', nome_cliente=nome_cliente, endereco=endereco, cep=cep,
                                separado=separado, data_separado=data_separado, coletado=coletado,
-                               data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio)
+                               data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio, data_entrega=data_entrega)
     else:
         return render_template('resultado.html', nome_cliente=None)
 
@@ -66,11 +93,11 @@ def consultar():
     db_database = os.environ.get('DB_DATABASE', 'mydatabase')
 
     cnx = mysql.connector.connect(
-        host=db_host,
-        port=db_port,
-        user=db_user,
-        password=db_password,
-        database=db_database
+        host='containers-us-west-127.railway.app',
+        port='5810',
+        user='root',
+        password='SVMoPcKC8ybeb16LhjXz',
+        database='railway'
     )
     cursor = cnx.cursor()
 
@@ -80,39 +107,11 @@ def consultar():
 
     resultado = cursor.fetchone()
 
-    if cursor.rowcount > 0:
-        # Extrair os dados do resultado da consulta
-        nome_cliente = resultado[1]
-        endereco = resultado[2]
-        cep = resultado[3]
-        separado = resultado[4]
-        data_separado = resultado[5]
-        coletado = resultado[6]
-        data_coletado = resultado[7]
-        entregue = resultado[8]
-        previsto = resultado[9]
-        rastreio = resultado[10]
-
-        print("Dados do resultado:")
-        print("Nome do cliente:", nome_cliente)
-        print("Endereço:", endereco)
-        print("CEP:", cep)
-        print("Separado:", separado)
-        print("Data de separação:", data_separado)
-        print("Coletado:", coletado)
-        print("Data de coleta:", data_coletado)
-        print("Entregue:", entregue)
-        print("Previsto:", previsto)
-        print("Rastreio:", rastreio)
-
-        # ... realizar verificações e atribuições necessárias ...
-
-        return render_template('resultado.html', nome_cliente=nome_cliente, endereco=endereco, cep=cep,
-                               separado=separado, data_separado=data_separado, coletado=coletado,
-                               data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio)
+    if resultado:
+        return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento)
     else:
-        return render_template('resultado.html', nome_cliente=None)
+        return render_template('resultado.html', nota_fiscal=None, codigo_rastreamento=None)
 
-app.debug = False
+app.debug = True
 if __name__ == "__main__":
     app.run()
