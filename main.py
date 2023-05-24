@@ -113,6 +113,6 @@ def consultar():
     else:
         return render_template('resultado.html', nome_cliente=None)
 
-app.debug = True
+app.debug = False
 if __name__ == "__main__":
     app.run()
