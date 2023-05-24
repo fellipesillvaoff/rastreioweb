@@ -19,7 +19,7 @@ def resultado():
         host=db_host,
         port=db_port,
         user="Rastreio",
-        password=db_password,
+        password='ClubeRastreio*****&',
         database=db_database,
     )
     cursor = cnx.cursor()
@@ -96,7 +96,7 @@ def consultar():
         host=db_host,
         port=db_port,
         user="Rastreio",
-        password=db_password,
+        password='ClubeRastreio*****&',
         database=db_database,
     )
     cursor = cnx.cursor()
