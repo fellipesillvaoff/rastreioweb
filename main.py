@@ -8,12 +8,18 @@ def resultado():
     nota_fiscal = request.args.get('nota')
     codigo_rastreamento = request.args.get('rastro')
 
+    db_host = os.environ.get('DB_HOST')
+    db_port = os.environ.get('DB_PORT')
+    db_user = os.environ.get('DB_USER')
+    db_password = os.environ.get('DB_PASSWORD')
+    db_database = os.environ.get('DB_DATABASE')
+
     cnx = mysql.connector.connect(
-        host="containers-us-west-127.railway.app",
-        port='5810',
-        user="root",
-        password="SVMoPcKC8ybeb16LhjXz",
-        database="railway"
+        host=db_host,
+        port=db_port,
+        user=db_user,
+        password=db_password,
+        database=db_database
     )
     cursor = cnx.cursor()
 
@@ -52,12 +58,18 @@ def consultar():
     nota_fiscal = request.args.get('nota')
     codigo_rastreamento = request.args.get('rastro')
 
+    db_host = os.environ.get('DB_HOST')
+    db_port = os.environ.get('DB_PORT')
+    db_user = os.environ.get('DB_USER')
+    db_password = os.environ.get('DB_PASSWORD')
+    db_database = os.environ.get('DB_DATABASE')
+
     cnx = mysql.connector.connect(
-        host="containers-us-west-127.railway.app",
-        port='5810',
-        user="root",
-        password="SVMoPcKC8ybeb16LhjXz",
-        database="railway"
+        host=db_host,
+        port=db_port,
+        user=db_user,
+        password=db_password,
+        database=db_database
     )
     cursor = cnx.cursor()
 
