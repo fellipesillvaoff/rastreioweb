@@ -11,14 +11,14 @@ def resultado():
 
     db_host = os.environ.get('DB_HOST',)
     db_port = int(os.environ.get('DB_PORT', '5810'))
-    db_user = os.environ.get('DB_USER')
+    #db_user = os.environ.get('DB_USER')
     db_password = os.environ.get('DB_PASSWORD')
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
         host=db_host,
         port=db_port,
-        user=db_user,
+        user="Rastreio",
         password=db_password,
         database=db_database,
     )
@@ -88,14 +88,14 @@ def consultar():
 
     db_host = os.environ.get('DB_HOST')
     db_port = int(os.environ.get('DB_PORT', '5810').strip("'"))
-    db_user = os.environ.get('DB_USER')
+    #db_user = os.environ.get('DB_USER')
     db_password = os.environ.get('DB_PASSWORD')
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
         host=db_host,
         port=db_port,
-        user=db_user,
+        user="Rastreio",
         password=db_password,
         database=db_database,
     )
