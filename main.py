@@ -79,7 +79,7 @@ def resultado():
 
 @app.route("/")
 def homepage():
-    return render_template('home.html')
+    return render_template('Home.html')
 
 @app.route("/consultar", methods=['GET'])
 def consultar():
