@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
@@ -31,23 +32,23 @@ def resultado():
 
     if cursor.rowcount > 0:
         # Extrair os dados do resultado da consulta
-        nome_cliente = resultado[0]
-        endereco = resultado[9]
-        cep = resultado[9]
-        separado = resultado[3]
-        data_separado = resultado[4]
-        coletado = resultado[5]
-        data_coletado = resultado[6]
-        entregue = resultado[7]
-        previsto = resultado[8]
-        rastreio = resultado[9]
+        nome_cliente = resultado[1]
+        endereco = resultado[2]
+        cep = resultado[3]
+        separado = resultado[4]
+        data_separado = resultado[5]
+        coletado = resultado[6]
+        data_coletado = resultado[7]
+        entregue = resultado[8]
+        previsto = resultado[9]
+        rastreio = resultado[10]
 
         # Renderizar o template 'resultado.html' com os dados da consulta
         return render_template('resultado.html', nome_cliente=nome_cliente, endereco=endereco, cep=cep,
                                separado=separado, data_separado=data_separado, coletado=coletado,
                                data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio)
     else:
-        pass
+        return render_template('resultado.html', nome_cliente=None)
 
 @app.route("/")
 def homepage():
@@ -81,16 +82,16 @@ def consultar():
 
     if cursor.rowcount > 0:
         # Extrair os dados do resultado da consulta
-        nome_cliente = resultado[0]
-        endereco = resultado[10]
-        cep = resultado[10]
+        nome_cliente = resultado[1]
+        endereco = resultado[2]
+        cep = resultado[3]
         separado = resultado[4]
         data_separado = resultado[5]
         coletado = resultado[6]
         data_coletado = resultado[7]
         entregue = resultado[8]
         previsto = resultado[9]
-        rastreio = resultado[3]
+        rastreio = resultado[10]
 
         print("Dados do resultado:")
         print("Nome do cliente:", nome_cliente)
@@ -110,7 +111,7 @@ def consultar():
                                separado=separado, data_separado=data_separado, coletado=coletado,
                                data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio)
     else:
-        return render_template('resultado.html', nome_cliente=None)  # Ou tratar o caso em que nenhum resultado é encontrado
+        return render_template('resultado.html', nome_cliente=None)
 
 
 if __name__ == "__main__":
