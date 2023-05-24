@@ -5,69 +5,68 @@
   <meta name="keywords" content="eletrônicos, rastreio, entrega, produtos">
   <title>Clube do Eletrônico Rastreamento</title>
   <script>
-<script>
-function rastrear() {
-  const notaFiscal = document.getElementById('input1').value;
-  const codigoRastreamento = document.getElementById('input2').value;
+    function rastrear() {
+      const notaFiscal = document.getElementById('input1').value;
+      const codigoRastreamento = document.getElementById('input2').value;
 
-  window.location.href = '/resultado?nota=' + encodeURIComponent(notaFiscal) + '&rastro=' + encodeURIComponent(codigoRastreamento);
+      window.location.href = '/resultado?nota=' + encodeURIComponent(notaFiscal) + '&rastro=' + encodeURIComponent(codigoRastreamento);
 
-  return false; // Evita o envio padrão do formulário
-}
-</script>
+      return false; // Evita o envio padrão do formulário
+    }
+  </script>
 
+  <style>
+    .layer1 {
+      position: relative;
+      z-index: 1;
+    }
 
+    .layer2 {
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+      margin-top: 1.6em;
+      margin-bottom: 0.9em;
+      overflow: hidden;
+    }
+
+    .layer2 .custom-div {
+      width: 600px;
+      height: 400px;
+    }
+
+    .layer3 {
+      position: relative;
+      z-index: 3;
+    }
+  </style>
 </head>
-<style>
-  .layer1 {
-    position: relative;
-    z-index: 1;
-  }
 
-  .layer2 {
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
-    margin-top: 1.6em;
-    margin-bottom: 0.9em;
-    overflow: hidden;
-  }
-
-  .layer2 .custom-div {
-    width: 600px;
-    height: 400px;
-  }
-
-  .layer3 {
-    position: relative;
-    z-index: 3;
-  }
-</style>
 <body style="background: #0000;">
 
-<div class="layer1" style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAFjrSZq-AA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
+  <div class="layer1" style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
+  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+  border-radius: 8px; will-change: transform;">
+    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+      src="https://www.canva.com/design/DAFjrSZq-AA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+    </iframe>
+  </div>
 
-<a href="https://www.canva.com/design/DAFjrSZq-AA/view?utm_content=DAFjrSZq-AA&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">sale</a> de Clube do Eletrônico
+  <a href="https://www.canva.com/design/DAFjrSZq-AA/view?utm_content=DAFjrSZq-AA&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">sale</a> de Clube do Eletrônico
 
-<div class="layer2" style="position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px;">
-<div class="custom-div" style="position: relative; width: 100%; height: 0; padding-bottom: 66.67%;">
-  <form action="/resultado" method="get" onsubmit="return rastrear();">
-    <label for="input1" style="height: 100px;">Nota Fiscal:</label>
-    <input type="text" id="input1" name="nota"><br><br>
+  <div class="layer2" style="position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px;">
+    <div class="custom-div" style="position: relative; width: 100%; height: 0; padding-bottom: 66.67%;">
+      <form action="/resultado" method="get" onsubmit="return rastrear();">
+        <label for="input1" style="height: 100px;">Nota Fiscal:</label>
+        <input type="text" id="input1" name="nota"><br><br>
 
-    <label for="input2">Código de Rastreamento:</label>
-    <input type="text" id="input2" name="rastro"><br><br>
+        <label for="input2">Código de Rastreamento:</label>
+        <input type="text" id="input2" name="rastro"><br><br>
 
-    <input type="submit" value="Rastrear">
-  </form>
-</div>
-</div>
+        <input type="submit" value="Rastrear">
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>
