@@ -10,7 +10,7 @@ def resultado():
     codigo_rastreamento = request.args.get('rastro')
 
     db_host = os.environ.get('DB_HOST', 'localhost')
-    db_port = int(os.environ.get('DB_PORT', '3306'))
+    db_port = int(os.environ.get('DB_PORT', '5810'))
     db_user = os.environ.get('DB_USER', 'root')
     db_password = os.environ.get('DB_PASSWORD', '')
     db_database = os.environ.get('DB_DATABASE', 'mydatabase')
@@ -60,7 +60,7 @@ def consultar():
     codigo_rastreamento = request.args.get('rastro')
 
     db_host = os.environ.get('DB_HOST', 'localhost')
-    db_port = int(os.environ.get('DB_PORT', '3306'))
+    db_port = int(os.environ.get('DB_PORT', '5810'))
     db_user = os.environ.get('DB_USER', 'root')
     db_password = os.environ.get('DB_PASSWORD', '')
     db_database = os.environ.get('DB_DATABASE', 'mydatabase')
@@ -113,6 +113,6 @@ def consultar():
     else:
         return render_template('resultado.html', nome_cliente=None)
 
-
+app.debug = True
 if __name__ == "__main__":
     app.run()
