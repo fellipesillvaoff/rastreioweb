@@ -9,11 +9,11 @@ def resultado():
     nota_fiscal = request.args.get('nota')
     codigo_rastreamento = request.args.get('rastro')
 
-    db_host = os.environ.get('DB_HOST')
-    db_port = os.environ.get('DB_PORT')
-    db_user = os.environ.get('DB_USER')
-    db_password = os.environ.get('DB_PASSWORD')
-    db_database = os.environ.get('DB_DATABASE')
+    db_host = os.environ.get('DB_HOST', 'localhost')
+    db_port = int(os.environ.get('DB_PORT', '3306'))
+    db_user = os.environ.get('DB_USER', 'root')
+    db_password = os.environ.get('DB_PASSWORD', '')
+    db_database = os.environ.get('DB_DATABASE', 'mydatabase')
 
     cnx = mysql.connector.connect(
         host=db_host,
@@ -59,11 +59,11 @@ def consultar():
     nota_fiscal = request.args.get('nota')
     codigo_rastreamento = request.args.get('rastro')
 
-    db_host = os.environ.get('DB_HOST')
-    db_port = os.environ.get('DB_PORT')
-    db_user = os.environ.get('DB_USER')
-    db_password = os.environ.get('DB_PASSWORD')
-    db_database = os.environ.get('DB_DATABASE')
+    db_host = os.environ.get('DB_HOST', 'localhost')
+    db_port = int(os.environ.get('DB_PORT', '3306'))
+    db_user = os.environ.get('DB_USER', 'root')
+    db_password = os.environ.get('DB_PASSWORD', '')
+    db_database = os.environ.get('DB_DATABASE', 'mydatabase')
 
     cnx = mysql.connector.connect(
         host=db_host,
