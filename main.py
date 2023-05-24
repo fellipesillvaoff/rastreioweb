@@ -93,11 +93,11 @@ def consultar():
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
-        host='containers-us-west-127.railway.app',
-        port='5810',
-        user='root',
-        password='SVMoPcKC8ybeb16LhjXz',
-        database='railway'
+        host=db_host,
+        port=db_port,
+        user=db_user,
+        password=db_password,
+        database=db_database,
     )
     cursor = cnx.cursor()
 
