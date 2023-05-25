@@ -50,7 +50,7 @@ def resultado():
             separado = ''
 
         if Rcoletado == 1:
-            coletado='Separado'
+            coletado='Coletado'
         else:
             coletado=''
         if Rentregue == 1:
