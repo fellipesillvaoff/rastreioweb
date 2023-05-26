@@ -40,9 +40,9 @@ def resultado():
         data_coletado = resultado[6]
         Rentregue = resultado[7]
         previsto = resultado[8]
-        cep=resultado[10]
-        data_entrega=resultado[11]
-        rastreio=resultado[2]
+        cep = resultado[10]
+        data_entrega = resultado[11]
+        rastreio = resultado[2]
 
         if Rseparado == 1:
             separado = 'Separado'
@@ -50,14 +50,14 @@ def resultado():
             separado = ''
 
         if Rcoletado == 1:
-            coletado='Coletado'
+            coletado = 'Coletado'
         else:
-            coletado=''
-        if Rentregue == 1:
-            entregue ="Entregue"
-        else:
-            entregue=''
+            coletado = ''
 
+        if Rentregue == 1:
+            entregue = "Entregue"
+        else:
+            entregue = ''
 
         print("Dados do resultado:")
         print("Nome do cliente:", nome_cliente)
@@ -73,7 +73,8 @@ def resultado():
 
         return render_template('resultado.html', nome_cliente=nome_cliente, endereco=endereco, cep=cep,
                                separado=separado, data_separado=data_separado, coletado=coletado,
-                               data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio, data_entrega=data_entrega)
+                               data_coletado=data_coletado, entregue=entregue, previsto=previsto,
+                               rastreio=rastreio, data_entrega=data_entrega)
     else:
         return render_template('resultado.html', nome_cliente=None)
 
