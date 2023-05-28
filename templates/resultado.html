@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3627574980798037');
+  fbq('track', 'PageView');
+</script>
+     <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5XWP481T2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X5XWP481T2');
+  </script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3627574980798037&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
     <meta charset="UTF-8">
     <title>Rastreamento</title>
 
@@ -74,8 +102,9 @@
             <div class="quadrado-div" style="font-size: 20px;background-color: transparent;color: black;display: flex; justify-content: center; align-items: center;">
                 Remetente<br>
                 Clube do Eletrônico <br>
-                Quadra 3 Cojunto H lote 116<br>
-                Cep 73596-324
+                Recebedor da entrega<br>
+                <img id="imagem" src="data:image/jpeg;base64, {{ foto }}" alt="Assinatura de entrega">
+                <img src="">
             </div>
         </div>
     </div>

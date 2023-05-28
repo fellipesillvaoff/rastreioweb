@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
 import mysql.connector
 import os
+import base64
+import io
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -40,9 +43,9 @@ def resultado():
         data_coletado = resultado[6]
         Rentregue = resultado[7]
         previsto = resultado[8]
-        cep=resultado[10]
-        data_entrega=resultado[11]
-        rastreio=resultado[2]
+        cep = resultado[10]
+        data_entrega = resultado[11]
+        rastreio = resultado[2]
 
         if Rseparado == 1:
             separado = 'Separado'
@@ -50,14 +53,14 @@ def resultado():
             separado = ''
 
         if Rcoletado == 1:
-            coletado='Separado'
+            coletado = 'Coletado'
         else:
-            coletado=''
-        if Rentregue == 1:
-            entregue ="Entregue"
-        else:
-            entregue=''
+            coletado = ''
 
+        if Rentregue == 1:
+            entregue = "Entregue"
+        else:
+            entregue = ''
 
         print("Dados do resultado:")
         print("Nome do cliente:", nome_cliente)
@@ -73,7 +76,8 @@ def resultado():
 
         return render_template('resultado.html', nome_cliente=nome_cliente, endereco=endereco, cep=cep,
                                separado=separado, data_separado=data_separado, coletado=coletado,
-                               data_coletado=data_coletado, entregue=entregue, previsto=previsto, rastreio=rastreio, data_entrega=data_entrega)
+                               data_coletado=data_coletado, entregue=entregue, previsto=previsto,
+                               rastreio=rastreio, data_entrega=data_entrega)
     else:
         return render_template('resultado.html', nome_cliente=None)
 
@@ -88,30 +92,45 @@ def consultar():
 
     db_host = os.environ.get('DB_HOST')
     db_port = int(os.environ.get('DB_PORT', '5810').strip("'"))
-    #db_user = os.environ.get('DB_USER')
+    # db_user = os.environ.get('DB_USER')
     db_password = os.environ.get('DB_PASSWORD')
     db_database = os.environ.get('DB_DATABASE')
 
     cnx = mysql.connector.connect(
-        host='containers-us-west-127.railway.app',
-        port='5810',
+        host=db_host,
+        port=db_port,
         user='Rastreio',
-        password='ClubeRastreio*****&',
-        database='railway',
+        password=db_password,
+        database=db_database
     )
     cursor = cnx.cursor()
 
     consulta = "SELECT * FROM rastreio WHERE nota_fiscal = %s AND rastreio = %s"
     valores = (nota_fiscal, codigo_rastreamento)
     cursor.execute(consulta, valores)
+    for row in cursor:
+        print(row)
 
     resultado = cursor.fetchone()
 
     if resultado:
-        return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento)
-    else:
-        return render_template('resultado.html', nota_fiscal=None, codigo_rastreamento=None)
+        foto_blob = resultado[12]  # Assumindo que a coluna "foto" está na posição 12
+        with open('imagem_temp.jpg', 'wb') as file:
+            file.write(foto_blob)
 
-app.debug = True
+        image_data = io.BytesIO(foto_blob)
+        image = Image.open(image_data)
+        image.show()
+        if foto_blob:
+            foto_base64 = base64.b64encode(foto_blob).decode('utf-8')
+            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento, foto=foto_base64)
+        else:
+
+            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento)
+    else:
+        flash("Dados incorretos ou ainda não atualizados.")
+        return redirect(url_for('home'))
+
+app.debug = False
 if __name__ == "__main__":
     app.run()
