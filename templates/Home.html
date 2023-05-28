@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
   <meta name="description" content="Rastreie seus eletrônicos favoritos no Clube do Eletrônico. Encontre informações detalhadas sobre produtos e seus status de entrega.">
   <meta name="keywords" content="eletrônicos, rastreio, entrega, produtos">
   <title>Clube do Eletrônico Rastreamento</title>
@@ -32,15 +33,14 @@
       justify-content: center;
     }
 
-    .layer2 {  height: auto;
-    font-size: 16px;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
+    .layer2 {
+      height: auto;
+      font-size: 16px;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .custom-div {
@@ -61,21 +61,29 @@
       font-size: 16px;
     }
 
-    .logo2 {
-      width:auto;
-      margin-top: 0;
-      margin-bottom: 51.421%;
-      margin-left: 36.82%;
-      margin-right: 36.82%;
-      height: 20%;
+    .logo1 {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
     }
+
+    .logo2 {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="div2">
-    <img class="logo1" src="static/LogoClube.png" alt="Logo Clube" width="200">
-    <img class="logo2" src="/templates/static/logorastreio.png" alt="Logo Rastreio" width="200">
+    <div class="logo1">
+      <img src="{{ url_for('static', filename='LogoClube.png') }}" alt="Logo Clube">
+    </div>
+    <div class="logo2">
+      <img src="{{ url_for('static', filename='logorastreio.png') }}" alt="Logo Clube">
+    </div>
     <div class="layer2">
       <div class="custom-div">
         <form action="/resultado" method="get" onsubmit="return rastrear();">
@@ -91,7 +99,9 @@
     </div>
   </div>
 
+
   <script>
+
     function rastrear() {
       const notaFiscal = document.getElementById('input1').value;
       const codigoRastreamento = document.getElementById('input2').value;
