@@ -32,15 +32,14 @@
       justify-content: center;
     }
 
-    .layer2 {  height: auto;
-    font-size: 16px;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
+    .layer2 {
+      height: auto;
+      font-size: 16px;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .custom-div {
@@ -62,20 +61,30 @@
     }
 
     .logo2 {
-      width:auto;
+      width: 18.5%;
       margin-top: 0;
       margin-bottom: 51.421%;
       margin-left: 36.82%;
       margin-right: 36.82%;
       height: 20%;
+      z-index: 4;
+    }
+
+    #imageContainer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
 
 <body>
   <div class="div2">
-    <img class="logo1" src="static/LogoClube.png" alt="Logo Clube" width="200">
-    <img class="logo2" src="/templates/static/logorastreio.png" alt="Logo Rastreio" width="200">
+    <div class="logo2" id="imageContainer"></div>
+    <img class="logo1" src="/LogoClube.PNG" alt="Logo Clube" width="200">
+
     <div class="layer2">
       <div class="custom-div">
         <form action="/resultado" method="get" onsubmit="return rastrear();">
@@ -91,6 +100,19 @@
     </div>
   </div>
 
+  <script>
+    // Cria um elemento de imagem
+    var image = new Image();
+
+    // Define o caminho da imagem
+    image.src = "/logorastreio.png";
+
+    // Adiciona a classe "logo-image" à imagem
+    image.classList.add("logo-image");
+
+    // Adiciona a imagem ao contêiner
+    document.getElementById("imageContainer").appendChild(image);
+  </script>
   <script>
     function rastrear() {
       const notaFiscal = document.getElementById('input1').value;
