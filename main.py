@@ -115,21 +115,17 @@ def consultar():
 
     if resultado:
         foto_blob = resultado[12]  # Assumindo que a coluna "foto" está na posição 12
-        with open('imagem_temp.jpg', 'wb') as file:
-            file.write(foto_blob)
-
-        image_data = io.BytesIO(foto_blob)
-        image = Image.open(image_data)
-        image.show()
         if foto_blob:
             foto_base64 = base64.b64encode(foto_blob).decode('utf-8')
-            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento, foto=foto_base64)
-        else:
 
-            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento)
+            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento,
+                                   foto=foto_base64)
+        else:
+            return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento,
+                                   foto=None)
     else:
-        flash("Dados incorretos ou ainda não atualizados.")
-        return redirect(url_for('home'))
+        return render_template('resultado.html', nota_fiscal=nota_fiscal, codigo_rastreamento=codigo_rastreamento,
+                               foto=None)
 
 app.debug = False
 if __name__ == "__main__":
